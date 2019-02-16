@@ -12,14 +12,13 @@ public class MainTempConverter {
        try {
            System.out.println("Введите температуру в градусах Фаренгейта(°F):");
            Scanner in = new Scanner(System.in);
-
            double farenheitDegrees = in.nextDouble();
 
            TemperatureConverter temperature = new TemperatureConverter(farenheitDegrees);
            System.out.printf("Температура в градусах Цельсия равна: %.2f %s%n ", temperature.getCelsiusTemperature(), "°C");
        }
        catch (Exception e){
-           System.out.println("Вы ввели некорректное значение!");
+           System.out.println("Вы ввели некорректное значение температуры!");
        }
 
     }

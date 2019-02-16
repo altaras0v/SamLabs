@@ -13,20 +13,12 @@ public class TemperatureConverter {
     }
 
     /**
-     * Getter of temperature
-     * @return temperature (user entered)
-     */
-    private double getTemperature() {
-        return temperature;
-    }
-
-    /**
      * Realization
      * Converts temperature from Celsius to Farenheit degrees
      * @return temperature in Celsius degrees
      */
     private double convertToCelsius(){
-        double tempCelsius = (getTemperature() - 32)*5/9;
+        double tempCelsius = (temperature - 32)*5/9;
         return tempCelsius;
     }
 
