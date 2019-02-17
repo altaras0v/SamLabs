@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**
  * Program which counts amount of numbers that user entered, counts sum of it and average
- * Code in Main class cause program is very small
+ * Code in Main class cause program is very small.
  */
 public class MainNumberInput {
     /**
