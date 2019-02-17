@@ -8,7 +8,6 @@ public class Triangle {
 
     /**
      * Constructor of triangle
-
      */
     Triangle(){
         Scanner in = new Scanner(System.in);
