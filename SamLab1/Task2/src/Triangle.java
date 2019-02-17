@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Class which build triangle and measure square and perimeter of it.
  */
@@ -6,20 +8,23 @@ public class Triangle {
 
     /**
      * Constructor of triangle
-     * @param x1 Point x1 that user entered
-     * @param y1 Point x2 that user entered
-     * @param x2 Point y1 that user entered
-     * @param y2 Point y2 that user entered
-     * @param x3 Point x3 that user entered
-     * @param y3 Point y3 that user entered
+
      */
-    Triangle(double x1,double y1,double x2,double y2,double x3,double y3){
-        this.x1=x1;
-        this.y1=y1;
-        this.x2=x2;
-        this.y2=y2;
-        this.x3=x3;
-        this.y3=y3;
+    Triangle(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введите координаты вершин треугольника");
+        System.out.println("Введите координату x1: ");
+        this.x1 = in.nextDouble();
+        System.out.println("Введите координату y1: ");
+        this.y1 = in.nextDouble();
+        System.out.println("Введите координату x2: ");
+        this.x2 = in.nextDouble();
+        System.out.println("Введите координату y2: ");
+        this.y2 = in.nextDouble();
+        System.out.println("Введите координату x3: ");
+        this.x3 = in.nextDouble();
+        System.out.println("Введите координату y3: ");
+        this.y3 = in.nextDouble();
     }
 
     /**
