@@ -52,29 +52,29 @@ public class NumberInitializer {
         return doublePart;
     }
     /**
-     * Interface of "firstNumberFinder"
-     * @return first figure of number
+     * Interface of "firstNumberFinder()"
+     * @return result of firstNumberFinder()
      */
     public int getFirstNumber(){
         return firstNumberFinder();
     }
     /**
-     * Interface of "secondNumberFinder"
-     * @return second figure of number
+     * Interface of "secondNumberFinder()"
+     * @return result of secondNumberFinder()
      */
     public int getSecondNumber(){
         return secondNumberFinder();
     }
     /**
-     * Interface of "thirdNumberFinder"
-     * @return third figure of number
+     * Interface of "thirdNumberFinder()"
+     * @return result of thirdNumberFinder()
      */
     public  int getThirdNumber(){
         return thirdNumberFinder();
     }
     /**
-     * Interface of "doubleNumberFinder"
-     * @return first two figure of number
+     * Interface of "doubleNumberFinder()"
+     * @return result of doubleNumberFinder()
      */
     public int getDoublePart(){
         return doublePartFinder();

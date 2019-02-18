@@ -23,8 +23,8 @@ public class TemperatureConverter {
     }
 
     /**
-     * Interface of "convertToCelsius"
-     * @return temperature in Celsius degrees
+     * Interface of "convertToCelsius()"
+     * @return result of covertToCelsius()
      */
     public double getCelsiusTemperature(){
         return convertToCelsius();

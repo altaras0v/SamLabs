@@ -56,8 +56,8 @@ public class Deposit {
     }
 
     /**
-     * Interface of "doubleIncrease"
-     * @return 2x value of money
+     * Interface of "doubleIncrease()"
+     * @return result of doubleIncrease()
      */
     public double getDoubleIncrease(){
         return  doubleIncrease();

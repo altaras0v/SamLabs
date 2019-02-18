@@ -47,7 +47,6 @@ public class Triangle {
     /**
      * Measure the length of third side of triangle
      * @return thirdSide - value of second side
-     * @return
      */
     private double thirdSide(){
         double thirdSide = Math.sqrt(Math.pow(x3-x1,2)+Math.pow(y3-y1,2));
@@ -75,16 +74,16 @@ public class Triangle {
     }
 
     /**
-     * Interface of "measurePerimeter"
-     * @return value of perimeter of triangle
+     * Interface of "measurePerimeter()"
+     * @return result of measurePerimeter()
      */
     public double getPerimeter(){
       return  measurePerimeter();
     }
 
     /**
-     * Interface of " measureSquare"
-     * @return value of square of triangle
+     * Interface of " measureSquare()"
+     * @return result of measureSquare()
      */
     public double getSquare(){
         return measureSquare();

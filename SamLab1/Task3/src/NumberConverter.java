@@ -13,7 +13,7 @@ public class NumberConverter {
      * Realization
      * Convert figure of number to string representation
      * String representation comes from relevant array
-     * @return
+     * @return number like a text
      */
     private String NumberToString(){
         NumberInitializer number = new NumberInitializer();
@@ -45,8 +45,8 @@ public class NumberConverter {
     }
 
     /**
-     * Interface of "NumberToString"
-     * @return number like a text
+     * Interface of "NumberToString()"
+     * @return result of NumberToString()
      */
     public String getNumber(){
         return NumberToString();
