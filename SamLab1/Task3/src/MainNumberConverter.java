@@ -7,7 +7,6 @@ public class MainNumberConverter {
      * @param args the command line arguments.Arguments aren't passed
      */
     public static void main(String[] args) {
-
         try {
             NumberConverter number = new NumberConverter();
             System.out.printf("%s %s","Вы ввели число:",number.getNumber());
