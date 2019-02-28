@@ -53,11 +53,11 @@ public class MainClass {
         String rank[] = {"Hearts","Spades","Clubs","Diamonds"};
 
         String allCards[] = new String[52];
-        for(int i = 0,k=0;i<rank.length;i++,k=k+13){
-            for(int j = 0; j<card.length;j++){
-                allCards[k+j] = card[j] + " of " + rank[i];
+            for(int i = 0,k=0;i<rank.length;i++,k=k+13){
+                for(int j = 0; j<card.length;j++){
+                    allCards[k+j] = card[j] + " of " + rank[i];
+                }
             }
-        }
 
         Random rnd = new Random();
         for (int i = 0; i < allCards.length; i++) {
@@ -75,69 +75,69 @@ public class MainClass {
     private static void task4(String[] args){
 
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please input array dimensions");
-        int sizeX = sc.nextInt();
-        int sizeY = sc.nextInt();
-        int[][] arr = new int[sizeX][sizeY];
-        int find = Integer.parseInt(args[1]);
-        int findX = 0, findY = 0;
-        int delta = Integer.parseInt(args[2]);
-        for (int i = 0; i < sizeX; i++) {
-            for (int k = 0; k < sizeY; k++) {
-                arr[i][k] = (int) (100 * Math.random());
-            }
-        }
-        int check = 0;
-        for (int[] n : arr) {
-            System.out.println(Arrays.toString(n));
-        }
-
-        for (int i = 0; i < sizeX; i++) {
-            for (int k = 0; k < sizeY; k++) {
-                if (arr[i][k] == find) {
-                    findX = i;
-                    findY = k;
-                    check++;
-                    break;
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Please input array dimensions");
+            int sizeX = sc.nextInt();
+            int sizeY = sc.nextInt();
+            int[][] arr = new int[sizeX][sizeY];
+            int find = Integer.parseInt(args[1]);
+            int findX = 0, findY = 0;
+            int delta = Integer.parseInt(args[2]);
+            for (int i = 0; i < sizeX; i++) {
+                for (int k = 0; k < sizeY; k++) {
+                    arr[i][k] = (int) (100 * Math.random());
                 }
             }
-        }
-        if (check == 0) {
-            System.out.println("No matches");
-        } else {
-            System.out.printf("Found coordinates! %d %d \n", findX, findY);
-        }
+            int check = 0;
+            for (int[] n : arr) {
+                System.out.println(Arrays.toString(n));
+            }
 
-        int m = 0;
-        loop:
-        for (int i = 0; i < sizeX; i++) {
-            for (int k = 0; k < sizeY; k++) {
-                m++;
-                if (arr[i][k] == find) {
-                    findX = i;
-                    findY = k;
-                    check++;
-                    break loop;
+            for (int i = 0; i < sizeX; i++) {
+                for (int k = 0; k < sizeY; k++) {
+                    if (arr[i][k] == find) {
+                        findX = i;
+                        findY = k;
+                        check++;
+                        break;
+                    }
                 }
             }
-        }
-        if (check == 0) {
-            System.out.println("No matches");
-        } else {
-            System.out.printf("Found coordinates and iterations! %d %d %d \n", findX, findY, m);
-        }
+            if (check == 0) {
+                System.out.println("No matches");
+            } else {
+                System.out.printf("Found coordinates! %d %d \n", findX, findY);
+            }
 
-        int check1 = 0;
-        for (int i = 0; i < sizeX; i++) {
-            for (int k = 0; k < sizeY; k++) {
-                if ((arr[i][k] < (find - delta)) || (arr[i][k] > (find + delta))) {
-                    check1++;
+            int m = 0;
+            loop:
+            for (int i = 0; i < sizeX; i++) {
+                for (int k = 0; k < sizeY; k++) {
+                    m++;
+                    if (arr[i][k] == find) {
+                        findX = i;
+                        findY = k;
+                        check++;
+                        break loop;
+                    }
                 }
             }
+            if (check == 0) {
+                System.out.println("No matches");
+            } else {
+                System.out.printf("Found coordinates and iterations! %d %d %d \n", findX, findY, m);
+            }
+
+            int check1 = 0;
+            for (int i = 0; i < sizeX; i++) {
+                for (int k = 0; k < sizeY; k++) {
+                    if ((arr[i][k] < (find - delta)) || (arr[i][k] > (find + delta))) {
+                        check1++;
+                    }
+                }
+            }
+            System.out.println(check1);
         }
-        System.out.println(check1);
-    }
 
     private static void task8(){
 
@@ -320,6 +320,5 @@ public class MainClass {
             }
             System.out.println("Sum: "+ sum);
         }
-
     }
 }
