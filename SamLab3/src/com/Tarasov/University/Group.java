@@ -18,19 +18,32 @@ public class Group {
     }
 
     public void setStudents(Student student) {
-            for (Integer i : groups){
-                if(student.getNumberOfGroup()==i){
-                    students.add(student);
-                }
+        boolean f = true;
+        while (f!=false) {
+            if (student.getNumberOfGroup() == number) {
+                students.add(student.getfName() + " " + student.getlName() + " " + student.getNumberOfGroup() + " group");
+                f=false;
+            } else {
+                System.out.println("Этот студент должен быть в другой группе "+student.getfName()+" " + student.getlName());
+                f = true;
+                break;
             }
+        }
 
     }
 
     public void setHeadman(Student headman) {
-        for (Integer i : groups) {
-            if (this.headman == null && headman.getNumberOfGroup() == i) {
-                this.headman = headman;
-                headmans.add(headman.getfName() + " " + headman.getlName() + " " + headman.getNumberOfGroup() + " group");
+        boolean f = true;
+                while (f!=false) {
+                if (this.headman == null && headman.getNumberOfGroup() == number) {
+                    this.headman = headman;
+                    headmans.add(headman.getfName() + " " + headman.getlName() + " " + headman.getNumberOfGroup() + " group");
+                    f = false;
+                }
+                else {
+                    System.out.println("Этот студент должен быть в другой группе"+headman.getfName()+" " + headman.getlName());
+                    f = true;
+                    break;
             }
         }
     }
@@ -42,7 +55,6 @@ public class Group {
     public static ArrayList getHeadmans(){
         return headmans;
     }
-
 }
 
 
