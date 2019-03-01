@@ -1,7 +1,18 @@
 package com.Tarasov.Util;
 
+/**
+ * Util class which formats values and liniarizes array
+ */
 public class Checker {
+    /**
+     * Class whichs formats money to string description
+     */
     public static class Money {
+        /**
+         * Formats money to string description
+         * @param value - value of money
+         * @return value of money like a string
+         */
         public static String formatMoney(int value) {
             if (value == 1) {
                 return value + " рубль";
@@ -18,17 +29,35 @@ public class Checker {
             } else return null;
         }
     }
+
+    /**
+     * Class which checks is value leap year or not
+     */
     public static class Year {
-        public static String checkLeapYear(int year){
+        /**
+         * Checks is value leap year or not
+         * @param year - value of year
+         * @return true - if it is leap year, false - if it is not leap year
+         */
+        public static boolean checkLeapYear(int year){
             if(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)){
-                return "Високосный год";
+                return true;
             }
             else {
-                return "Невисокосный год";
+                return false;
             }
         }
     }
+
+    /**
+     * Class which liniarizes array
+     */
     public static  class  Array{
+        /**
+         * Liniarizes array
+         * @param array - two-dimensional array
+         * @return dimensional array
+         */
         public static String[] linearizeArray(int[][] array) {
             String[] newArray = new String[array.length];
 
