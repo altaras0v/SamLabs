@@ -1,36 +1,47 @@
 package com.Tarasov.University;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Class which creates student
+ */
 public class Student {
     private String fName;
     private String lName;
     private String phoneNumber;
     private int numberOfGroup;
-    private static List <String> students = new ArrayList();
 
+    /**
+     * Constructor of student
+     * @param fName - first name of student
+     * @param lName - last name of student
+     * @param phoneNumber - phone number of student
+     * @param numberOfGroup - number of group that student study
+     */
     public Student(String fName,String lName,String phoneNumber,int numberOfGroup){
         this.fName = fName;
         this.lName = lName;
         this.numberOfGroup = numberOfGroup;
         this.phoneNumber = phoneNumber;
-        students.add(lName + " " + fName + " " + numberOfGroup + " group");
-
     }
 
+    /**
+     * Get number of group that student study
+     * @return number of group
+     */
     public int getNumberOfGroup() {
         return numberOfGroup;
     }
 
-    public static List <String> getStudents() {
-        return students;
-    }
-
+    /**
+     * Get first name of student
+     * @return first name
+     */
     public String getfName() {
         return fName;
     }
-
+    /**
+     * Get last name of student
+     * @return last name
+     */
     public String getlName() {
         return lName;
     }

@@ -31,20 +31,24 @@ public class MainClass {
         task3();
     }
     private static void task3() {
+        // Create headmans
         Student a = new Student("A","A","1111111",1);
         Student b = new Student("B","B","2222222",2);
         Student c = new Student("C","C","3333333",3);
         Student d = new Student("D","D","4444444",4);
         Student e = new Student("E","E","5555555",5);
 
+        //Create groups
         Group first = new Group(1);
         Group second = new Group(2);
         Group third = new Group(3);
         Group fourth = new Group(4);
         Group fifth = new Group(5);
 
-        first.setHeadman(a);second.setHeadman(b);third.setHeadman(c);fourth.setHeadman(d);fifth.setHeadman(e);
+        //Set headmans to group
+        first.addHeadman(a);second.addHeadman(b);third.addHeadman(c);fourth.addHeadman(d);fifth.addHeadman(e);
 
+        // Create students
         Student f = new Student("F","F","0112321",1);
         Student g = new Student("G","G","3232323",1);
         Student h = new Student("H","H","3230099",2);
@@ -55,23 +59,23 @@ public class MainClass {
         Student x = new Student("X","X","8908902",4);
         Student y = new Student("Y","Y","4123456",5);
         Student z = new Student("Z","Z","5678910",5);
-        Student test = new Student("eq","F","1",1);
+        Student test = new Student("eq","F","1",5);
 
-        first.setStudents(f);first.setStudents(g);second.setStudents(h);second.setStudents(i);third.setStudents(j);
-        third.setStudents(k);fourth.setStudents(l);fourth.setStudents(x);fifth.setStudents(y);fifth.setStudents(z);
+        //Add students to group
+        first.addUsualStudents(f);first.addUsualStudents(g);second.addUsualStudents(h);second.addUsualStudents(i);third.addUsualStudents(j);
+        third.addUsualStudents(k);fourth.addUsualStudents(l);fourth.addUsualStudents(x);fifth.addUsualStudents(y);fifth.addUsualStudents(z);
+        fifth.addUsualStudents(test);
 
+        //Create departments
         Department firstDepartment = new Department("FirstDepartment");
         Department secondDepartment = new Department("SecondDepartment");
 
-        firstDepartment.setGroups(first);firstDepartment.setGroups(second);firstDepartment.setGroups(third);
-        secondDepartment.setGroups(fourth);secondDepartment.setGroups(fifth);
 
         Univresity.displayDepartment();
         Univresity.displayGroups();
         Univresity.displayStudents();
         Univresity.displayHeadmans();
         Univresity.searchByLastName("F");
-
     }
 
     private static void task2() {
@@ -81,9 +85,14 @@ public class MainClass {
         System.out.println(Checker.Money.formatMoney(value));
         System.out.println("Введите год:");
         int year = in.nextInt();
-        System.out.println(Checker.Year.checkLeapYear(year));
+        if (Checker.Year.checkLeapYear(year)==true){
+            System.out.println("Вы ввели високосный год");
+        }
+        else System.out.println("Вы ввели невисокосный год");
         int[][] mas = new int[3][3];
+        System.out.println("Исходный массив:");
         System.out.println(Arrays.deepToString(mas));
+        System.out.println("Преобразованный массив:");
         System.out.println(Arrays.toString(Checker.Array.linearizeArray(mas)));
     }
 
