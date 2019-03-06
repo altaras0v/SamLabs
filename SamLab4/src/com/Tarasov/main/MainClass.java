@@ -32,9 +32,12 @@ public class MainClass {
                 case "7":
                     task7();
                     break;
+                case "9":
+                    task9();
+                    break;
             }
         }
-        task7();
+        task9();
     }
 
     private static void task1() {
@@ -128,6 +131,16 @@ public class MainClass {
         else {
             System.out.println("No, password is bad");
         }
-
+    }
+    private static void task9() {
+        String phoneNumber = "+375296655456";
+        Pattern pattern = Pattern.compile("^((8|\\+3)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+        Matcher m = pattern.matcher(phoneNumber);
+        if(m.find()==true){
+            System.out.println("Мобильный телефон корректный");
+        }
+        else {
+            System.out.println("Некорректный номер телефона");
+        }
     }
 }
