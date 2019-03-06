@@ -35,9 +35,12 @@ public class MainClass {
                 case "9":
                     task9();
                     break;
+                case "10":
+                    task10();
+                    break;
             }
         }
-        task9();
+        task10();
     }
 
     private static void task1() {
@@ -136,11 +139,19 @@ public class MainClass {
         String phoneNumber = "+375296655456";
         Pattern pattern = Pattern.compile("^((8|\\+3)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
         Matcher m = pattern.matcher(phoneNumber);
-        if(m.find()==true){
+        if (m.find() == true) {
             System.out.println("Мобильный телефон корректный");
-        }
-        else {
+        } else {
             System.out.println("Некорректный номер телефона");
         }
+    }
+        private static void task10() {
+            String htmlText = "foo <a href='link1'>bar</a> baz <a href='link2'>qux</a> foo";
+            Pattern pattern = Pattern.compile("<a href='(.*?)'>");
+            Matcher m = pattern.matcher(htmlText);
+            while(m.find()) {
+                System.out.println(m.group(0));
+                System.out.println(m.group(1));
+            }
     }
 }
