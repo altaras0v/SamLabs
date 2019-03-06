@@ -29,9 +29,12 @@ public class MainClass {
                 case "6":
                     task6();
                     break;
+                case "7":
+                    task7();
+                    break;
             }
         }
-        task6();
+        task7();
     }
 
     private static void task1() {
@@ -102,7 +105,6 @@ public class MainClass {
     }
 
     private static void task6() {
-        LinkedList<String> numbers = new LinkedList<String>();
         String s = "123 цуцйууцйцуцй9 304";
         Pattern pattern = Pattern.compile("\\d+");
         Matcher m = pattern.matcher(s);
@@ -113,5 +115,19 @@ public class MainClass {
            k = k + x;
         }
         System.out.println(k);
+    }
+
+    private static void task7() {
+        String password = "eeeeeeeeee123ieekdNpee";
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$");
+        Matcher m = pattern.matcher(password);
+
+        if (m.find()==true){
+            System.out.println("Yes, password is good");
+        }
+        else {
+            System.out.println("No, password is bad");
+        }
+
     }
 }
