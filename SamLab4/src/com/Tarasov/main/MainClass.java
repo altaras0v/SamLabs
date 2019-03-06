@@ -1,5 +1,7 @@
 package com.Tarasov.main;
 
+import java.util.LinkedList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainClass {
@@ -29,48 +31,51 @@ public class MainClass {
                     break;
             }
         }
-        task5();
+        task6();
     }
 
     private static void task1() {
 
-        String s ="kazak lol";
+        String s = "kazak lol";
         String[] substring;
         substring = s.split(" ");
         int k = 0;
         int length = 0;
         int fullLength = 0;
-        for (int i = 0; i<substring.length;i++){
+        for (int i = 0; i < substring.length; i++) {
             fullLength = fullLength + substring[i].length();
-           if (Palindrom.isPalindrome(substring[i])==true){
-               k=k+1;
-               length = length + substring[i].length();
-           }
+            if (Palindrom.isPalindrome(substring[i]) == true) {
+                k = k + 1;
+                length = length + substring[i].length();
+            }
         }
         System.out.println(k);
-        System.out.println(length/fullLength*100);
+        System.out.println(length / fullLength * 100);
 
     }
+
     private static void task2() {
 
-        String s ="kazak";
+        String s = "kazak";
         System.out.println(Palindrom.isPalindrome(s));
 
     }
+
     private static void task3() {
 
-        String s ="xxxabyyyyc";
+        String s = "xxxabyyyyc";
         char[] substring;
         substring = s.toCharArray();// toCharArray
         int k = 0;
 
-        for(int i = 0; i<substring.length-1;i++){
-            if (substring[i]==(substring[i+1])&&substring[i+1]==(substring[i+2])){
-                k = k +1;
+        for (int i = 0; i < substring.length - 1; i++) {
+            if (substring[i] == (substring[i + 1]) && substring[i + 1] == (substring[i + 2])) {
+                k = k + 1;
             }
         }
         System.out.println(k);
     }
+
     private static void task4() {
 
         String s = "123 456 899 75757 04304";
@@ -78,13 +83,14 @@ public class MainClass {
         substring = s.split(" ");
         String s1 = new String();
 
-        for(int i = 0;i<substring.length/2;i++){
-            String temp =substring[substring.length-1-i];
-            substring[substring.length-1-i] = substring[i];
+        for (int i = 0; i < substring.length / 2; i++) {
+            String temp = substring[substring.length - 1 - i];
+            substring[substring.length - 1 - i] = substring[i];
             substring[i] = temp;
         }
-        System.out.println( s1.join(" ",substring));
+        System.out.println(s1.join(" ", substring));
     }
+
     private static void task5() {
 
         String s = "123 456 899 75757 04304";
@@ -94,10 +100,18 @@ public class MainClass {
             System.out.print((s1.join("", s2 + " ")));
         }
     }
+
     private static void task6() {
-        String s = "123 456 899 75757 04304";
-        String[] substring;
-        substring = s.split(" ");
-        Pattern pattern = Pattern.compile("^<([a-z]+)([^>]+)*(?:>(.*)<\\/\\1>|\\s+\\/>)$");
+        LinkedList<String> numbers = new LinkedList<String>();
+        String s = "123 цуцйууцйцуцй9 304";
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher m = pattern.matcher(s);
+        int k = 0;
+        int x;
+        while (m.find()) {
+           x= Integer.parseInt(m.group());
+           k = k + x;
+        }
+        System.out.println(k);
     }
 }
