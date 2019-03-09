@@ -1,5 +1,7 @@
 package com.Tarasov.Main;
 
+import com.Tarasov.Library.Book;
+import com.Tarasov.Library.Library;
 import com.Tarasov.University.Department;
 import com.Tarasov.University.Group;
 import com.Tarasov.University.Student;
@@ -8,6 +10,7 @@ import com.Tarasov.Util.DescriptionBelarus;
 import com.Tarasov.Util.Univresity;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class MainClass {
@@ -26,10 +29,24 @@ public class MainClass {
                 case "3":
                     task3();
                     break;
+                case "4":
+                    task4();
+                    break;
             }
         }
-        task3();
+        task4();
     }
+    private static void task4() {
+        Book[] books = new Book[3];
+        books[0]= new Book("Chuck Palanik","Fight Club",new Date(1998,1,3));
+        books[1]= new Book("Chuck Palanik","1",new Date(2005,1,3));
+        books[2]= new Book("Steaven King","2",new Date(2007,1,3));
+        Library library = new Library("A","Address",books);
+        library.showAuthors();
+        library.showBooks();
+        library.searchByDate(new Date(1999,1,1),new Date(2006,2,3));
+    }
+
     private static void task3() {
         // Create headmans
         Student a = new Student("A","A","1111111",1);
