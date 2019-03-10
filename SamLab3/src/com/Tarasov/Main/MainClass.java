@@ -2,6 +2,7 @@ package com.Tarasov.Main;
 
 import com.Tarasov.Library.Book;
 import com.Tarasov.Library.Library;
+import com.Tarasov.Time.Time;
 import com.Tarasov.University.Department;
 import com.Tarasov.University.Group;
 import com.Tarasov.University.Student;
@@ -32,9 +33,19 @@ public class MainClass {
                 case "4":
                     task4();
                     break;
+                case "5":
+                    task5();
+                    break;
             }
         }
-        task4();
+        task5();
+    }
+    private static void task5() {
+        Time time1 = new Time(600);
+        Time time2 = new Time(250,43,12);
+        System.out.println(time1.convertToSeconds());
+        time1.showTime();
+        time2.showTime();
     }
     private static void task4() {
         Book[] books = new Book[3];
