@@ -1,5 +1,6 @@
 package com.Tarasov.Main;
 
+import com.Tarasov.ATM.ATM;
 import com.Tarasov.Library.Book;
 import com.Tarasov.Library.Library;
 import com.Tarasov.Time.Time;
@@ -36,9 +37,16 @@ public class MainClass {
                 case "5":
                     task5();
                     break;
+                case "6":
+                    task6();
+                    break;
             }
         }
-        task5();
+        task6();
+    }
+    private static void task6() {
+        ATM atm = new ATM(100,100,100);
+        atm.takeMoney(140);
     }
     private static void task5() {
         Time time1 = new Time(600);
