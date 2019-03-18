@@ -8,11 +8,26 @@ import java.util.List;
  */
 public class Team {
     TeamLeader teamLeader;
-
-    public List<String> parts = new ArrayList(); // names of parts of house that workers built
+    public static List<String> parts = new ArrayList(); // names of parts of house that workers built
     List<Worker> workers = new ArrayList<>(); // list of workers
 
+    /**
+     * Constructor with own params
+     * @param worker - array of workers
+     * @param teamLeader - teamlead
+     */
+    public Team(Worker[] worker,TeamLeader teamLeader) {
+        for(Worker w: worker){
+            workers.add(w);
+        }
+        this.teamLeader = teamLeader;
+    }
+
+    /**
+     * Constructor with usual params
+     */
     public Team() {
+
         teamLeader = new TeamLeader();
         teamLeader.setName("Alex");
         Worker worker1 = new Worker();
