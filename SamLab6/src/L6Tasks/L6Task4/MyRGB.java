@@ -16,7 +16,6 @@ public class MyRGB {
         private int b;
         private int g;
 
-
         RGB(int r, int g, int b){
             this.r = r;
             this.b = b;
@@ -33,7 +32,7 @@ public class MyRGB {
             }
             else return rgb[this.ordinal()-1];
         }
-       public RGB previousColor(){
+       public RGB previous(){
            RGB[] rgb = values();
            if (ordinal()==0)
                return rgb[10];
