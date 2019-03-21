@@ -33,5 +33,11 @@ public class MyRGB {
             }
             else return rgb[this.ordinal()-1];
         }
+       public RGB previousColor(){
+           RGB[] rgb = values();
+           if (ordinal()==0)
+               return rgb[10];
+           return rgb[this.ordinal()-1];
+       }
     }
 }
