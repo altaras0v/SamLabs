@@ -1,12 +1,9 @@
 package com.Tatasov.L5.main;
 
-import Tasks.Task1;
-import Tasks.Task2;
-import Tasks.Task3;
-import Tasks.Task4;
-import Tasks.Task5;
+import Tasks.*;
 
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class MainClass {
     public static void main(String[] args) {
@@ -36,4 +33,12 @@ public class MainClass {
     private static void task5() {
         Task5.Task5();
     }
+    private static void task7(){ try {
+        Task7.execute();
+    } catch (FileNotFoundException | NullPointerException e) {
+        System.out.println("Исключение");
+    } catch (URISyntaxException e) {
+        e.printStackTrace();
+    }
+    };
 }
