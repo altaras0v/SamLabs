@@ -5,6 +5,9 @@ import L6Tasks.L6Task1.SwimmingAthleteImpl;
 import L6Tasks.L6Task2.MyWeek;
 import L6Tasks.L6Task3.MyMathOperator;
 import L6Tasks.L6Task4.MyRGB;
+import L6Tasks.L6Task5.Student;
+import L6Tasks.L6Task5.StudentComparator;
+import L6Tasks.L6Task6.House;
 
 public class MainClass {
     public static void main(String[] args) {
@@ -79,4 +82,15 @@ public class MainClass {
         MyRGB.RGB rgb = MyRGB.RGB.BLUE;
         System.out.println(rgb.convertTo());
     }
+    private static void task5() {
+        Student st1 = new Student("Evgen", 19, 7.2);
+        Student st2 = new Student("Pasha", 20, 9.3);
+
+        System.out.println(StudentComparator.RESULT.compare(st1, st2));
+        StudentComparator.NAME.log("Massage", st1);
+    }
+    private static void task6() {
+        House house = new House();
+    }
+
 }
