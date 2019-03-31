@@ -14,5 +14,7 @@ public class UserElement<T> {
         this.date = date;
     }
 
-
+    public String getFio() {
+        return fio;
+    }
 }

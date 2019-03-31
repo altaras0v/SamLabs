@@ -2,7 +2,7 @@ package Tasks.L7Task2;
 
 import static java.util.Arrays.copyOf;
 
-public class MyArrayList<T> implements Iterator {
+public class MyArrayList<T> implements Iterator<T> {
     private final int INIT_SIZE = 16;
     private T[] array = (T[])new Object[INIT_SIZE];
     private int pointer = 0;
@@ -55,7 +55,7 @@ public class MyArrayList<T> implements Iterator {
     }
 
     @Override
-    public Object remove() {
+    public T remove() {
         T res = array[pointer-1];
         if (pointer>0){
             array = copyOf(array,pointer-1);

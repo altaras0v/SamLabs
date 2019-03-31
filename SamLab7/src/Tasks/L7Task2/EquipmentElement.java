@@ -15,5 +15,7 @@ public class EquipmentElement<T> {
         this.date = date;
     }
 
-
+    public String getName() {
+        return name;
+    }
 }

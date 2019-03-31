@@ -5,10 +5,12 @@ import Tasks.L7Task1.Pair;
 import Tasks.L7Task2.EquipmentElement;
 import Tasks.L7Task2.MyArrayList;
 import Tasks.L7Task2.UserElement;
+import Tasks.L7Task3.MyStack;
+import Tasks.L7Task3.StackException;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
+import static javafx.scene.input.KeyCode.T;
 
 public class MainClass7 {
     public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class MainClass7 {
 
             }
         }
-        task1();
+        task3();
     }
 
     private static void task1() {
@@ -45,9 +47,26 @@ public class MainClass7 {
         Date date2 = new Date(128);
         UserElement userElement1 = new UserElement("ALT","First","2345678",date1);
         EquipmentElement equipmentElement = new EquipmentElement("J","106",date2);
-        MyArrayList myArrayList = new MyArrayList();
+        MyArrayList<UserElement> myArrayList = new MyArrayList();
         myArrayList.add(userElement1);
         System.out.println(myArrayList.get(0));
 
+
+        for (int i=0; i<myArrayList.size(); i++){
+            System.out.println(myArrayList.get(i).getFio());
+        }
+    }
+    private static void task3() {
+        try {
+            MyStack stack = new MyStack();
+            stack.push(3);
+            stack.pop();
+            System.out.println(stack.size());
+            System.out.println(stack.isEmpty());
+            stack.pop();
+
+        } catch (StackException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
