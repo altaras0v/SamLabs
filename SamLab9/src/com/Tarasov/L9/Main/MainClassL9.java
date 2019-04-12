@@ -22,7 +22,12 @@ public class MainClassL9 {
     }
 
     private static void task1() {
-        FileManager.inputter();
+        try {
+            FileManager.inputter();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

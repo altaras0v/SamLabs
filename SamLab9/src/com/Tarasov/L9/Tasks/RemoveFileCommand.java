@@ -6,7 +6,7 @@ public class RemoveFileCommand implements AbstractCommand {
 
     @Override
     public void execute(String name) {
-        File f = new File(name  );
+        File f = new File(name );
         f.delete();
     }
 }
