@@ -1,40 +1,48 @@
 package com.Tarasov.CurrencyConverter.Command;
 
+import com.Tarasov.CurrencyConverter.Client.ClientRequest;
 import com.Tarasov.CurrencyConverter.DataBase.ArrayDataBase;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ChooseValueCommand implements AbstractCommand {
-    @Override
-    public void execute() {
 
+    private static ClientRequest clientRequest;
 
+    public void execute(Object response) {
 
-
-        String[][] data = ArrayDataBase.getDataBase();
-        System.out.println("Выберите исходную валюту ");
-
-        for (int i = 0; i < data.length - 1; i++) {
-            for (int j = 0; j < data[i].length - 1; j++) {
-                System.out.println(j+1 + ": " + data[j][0]);
-            }
+        System.out.println("Выберите исходную валюту: ");
+        Map<Integer,String> map = (Map<Integer, String>) response;
+        for(Map.Entry<Integer,String> item : map.entrySet()){
+            System.out.printf("%s.%s \n", item.getKey(), item.getValue());
         }
-        Scanner sc1 = new Scanner(System.in);
-        int value1 = sc1.nextInt();
-
-        System.out.println("Выберите итоговую валюту ");
-        for (int i = 0; i < data.length - 1; i++) {
-            for (int j = 0; j < data[i].length - 1; j++) {
-                System.out.println(j+1 + ": " + data[j][1]);
-            }
+        Scanner scanner = new Scanner(System.in);
+        int currencyFrom = scanner.nextInt();
+        //
+        System.out.println("Выберите итоговую валюту: ");
+        for(Map.Entry<Integer,String> item : map.entrySet()){
+            System.out.printf("%s.%s \n", item.getKey(), item.getValue());
         }
-        Scanner sc2 = new Scanner(System.in);
-        int value2 = sc2.nextInt();
-        //далее value1 и value2 закидываем в объект
+        int currencyTo = scanner.nextInt();
+
+        System.out.println("Введите сумму: ");
+        BigDecimal value = scanner.nextBigDecimal();
+
+        clientRequest = new ClientRequest(map.get(currencyFrom),map.get(currencyTo),value);
     }
 
     @Override
+    public void execute() {
+    }
+    @Override
     public String[] getChoice() {
-        return null;
+        return new String[0];
+    }
+
+    public static ClientRequest getClientRequest() {
+        return clientRequest;
     }
 }

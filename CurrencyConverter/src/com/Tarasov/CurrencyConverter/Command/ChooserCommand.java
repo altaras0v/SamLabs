@@ -2,24 +2,33 @@ package com.Tarasov.CurrencyConverter.Command;
 
 import com.Tarasov.CurrencyConverter.Client.Interviewer;
 
-public class ChooserCommand {
-    public static String[] choice = new String[1];
-    public static void chooseCommand(){
-        Interviewer.getInterview();
-        int command = Interviewer.getResult();
+import java.io.Serializable;
+
+public class ChooserCommand implements Serializable {
+
+    public ChooserCommand(){
+
+    }
+
+    public synchronized Object chooseCommand(int command,Object... response){
+
         switch (command){
             case 1:
-                new ChooseValueCommand().execute();
-                break;
+                new ChooseValueCommand().execute(response[0]);
+                return ChooseValueCommand.getClientRequest();
+               // break;
             case 2:
-            new CheckCurrencyCommand().execute();
-            choice = new CheckCurrencyCommand().getChoice();
-            break;
+                new CheckCurrencyCommand().execute();
+                break;
+            case 3:
+                new DisplayCommand().execute(response[0],response[1]);
+                break;
             case 4:
                 new ExitCommand().execute();
             default:
-                break;
+                return  null;
+         //       break;
         }
-
+        return  ChooseValueCommand.getClientRequest();
     }
 }
