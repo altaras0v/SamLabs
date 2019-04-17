@@ -1,5 +1,7 @@
 package com.Tarasov.CurrencyConverter.DataBase;
 
+import com.Tarasov.CurrencyConverter.Client.ClientRequest;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -16,7 +18,7 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         dataBase[1][2] = "0.99";
         new Thread(() -> {
             try {
-               // System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
                 while (true) {
                     BigDecimal decimal = new BigDecimal("0.001");
                     synchronized (dataBase) {
@@ -43,7 +45,7 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         return dataBase;
     }
 
-    private static Set<String> getCurrencySet() {
+    public static Set<String> getCurrencySet() {
          Set<String> currencySet = new HashSet<>();
           for (int i= 0; i<getDataBase().length;i++){
               currencySet.add(getDataBase()[i][0]);
@@ -53,12 +55,30 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
 
     public static Map<Integer,String> getCurrencyMap(){
         Map<Integer,String> currencyMap = new HashMap<>();
+        int temp = 1;
         for (Object s : getCurrencySet()){
-            int temp = 1;
             currencyMap.put(temp,s.toString());
             temp++;
         }
-        return  currencyMap;
+        return  Collections.synchronizedMap(currencyMap);
+    }
+
+    public static String convertValue(ClientRequest clientRequest){
+        String s=null;
+        for (int i = 0; i < getDataBase().length;i++){
+            if(getDataBase()[i][0]==clientRequest.getCurrencyFrom()&&getDataBase()[i][1]==clientRequest.getCurrencyTo()){
+                s = convertElement(getDataBase()[i][2],clientRequest.getValueOfCurrency());
+            }
+        }
+        return s;
+    }
+
+    private static String convertElement(String currency,String value){
+        BigDecimal bigDecimalCurrency = new BigDecimal(currency);
+        BigDecimal bigDecimalValue = new BigDecimal(value);
+        BigDecimal result = bigDecimalCurrency.multiply(bigDecimalValue);
+
+        return result.toString();
     }
 
 
