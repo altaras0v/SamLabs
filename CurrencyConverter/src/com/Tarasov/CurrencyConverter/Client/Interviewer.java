@@ -2,12 +2,17 @@ package com.Tarasov.CurrencyConverter.Client;
 
 import java.util.Scanner;
 
+/**
+ * Class which asks user about actions
+ * User enters actions
+ */
 public class Interviewer {
     private static int result;
-    public static void getInterview(){
+
+    public static void getInterview() {
         System.out.println("Выберите команду: ");
-        System.out.printf("%s\n%s\n%s\n%s\n","1.Конвертировать валюту","2.Узнать курс",
-                "3.Сохранить рзультат в файл","4.Выход из программы");
+        System.out.printf("%s\n%s\n%s\n%s\n", "1.Конвертировать валюту", "2.Узнать курс", "3.Сохранить рзультат в файл",
+                "4.Выход из программы");
         Scanner sc = new Scanner(System.in);
         result = sc.nextInt();
     }
