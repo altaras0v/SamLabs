@@ -13,6 +13,9 @@ public class ClientRequest implements Serializable {
         this.currencyTo = currencyTo;
         this.valueOfCurrency = valueOfCurrency.toString();
     }
+    public ClientRequest(String currencyFrom){
+        this.currencyFrom = currencyFrom;
+    }
 
     public String getCurrencyFrom() {
         return currencyFrom;

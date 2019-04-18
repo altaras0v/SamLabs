@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class ArrayDataBase implements IDataBase,Runnable,Serializable {
-    static String dataBase[][] = new String[2][3];
+    static String dataBase[][] = new String[4][3];
     @Override
     public synchronized void initialize() {
         dataBase[0][0] = "USD";
@@ -16,6 +16,12 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         dataBase[1][0] = "EUR";
         dataBase[1][1] = "USD";
         dataBase[1][2] = "0.99";
+        dataBase[2][0] = "USD";
+        dataBase[2][1] = "BYN";
+        dataBase[2][2] = "0.5";
+        dataBase[3][0] = "BYN";
+        dataBase[3][1] = "USD";
+        dataBase[3][2] = "2";
         new Thread(() -> {
             try {
 
@@ -62,24 +68,18 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         }
         return  Collections.synchronizedMap(currencyMap);
     }
-
-    public static String convertValue(ClientRequest clientRequest){
-        String s=null;
-        for (int i = 0; i < getDataBase().length;i++){
-            if(getDataBase()[i][0]==clientRequest.getCurrencyFrom()&&getDataBase()[i][1]==clientRequest.getCurrencyTo()){
-                s = convertElement(getDataBase()[i][2],clientRequest.getValueOfCurrency());
+    public static List<Integer> toList (Object currency) {
+        List list = new ArrayList();
+        String[][] array = ArrayDataBase.getDataBase();
+        for(int i = 0; i < array.length;i++){
+            for(int j = 0; j < array[i].length;j++)
+            if (array[i][0].equals(((ClientRequest)currency).getCurrencyFrom())){
+                list.addAll(Arrays.asList(array[i][j]));
             }
         }
-        return s;
+        return list;
     }
 
-    private static String convertElement(String currency,String value){
-        BigDecimal bigDecimalCurrency = new BigDecimal(currency);
-        BigDecimal bigDecimalValue = new BigDecimal(value);
-        BigDecimal result = bigDecimalCurrency.multiply(bigDecimalValue);
-
-        return result.toString();
-    }
 
 
     @Override

@@ -18,10 +18,14 @@ public class ChooserCommand implements Serializable {
                 return ChooseValueCommand.getClientRequest();
                // break;
             case 2:
-                new CheckCurrencyCommand().execute();
-                break;
+                new CheckCurrencyCommand().execute(response[0]);
+                return CheckCurrencyCommand.getClientRequest();
+                //break;
             case 3:
-                new DisplayCommand().execute(response[0],response[1]);
+                if(response[1]==null) new DisplayCommand().execute(response[0]);
+                else {
+                    new DisplayCommand().execute(response[0], response[1]);
+                }
                 break;
             case 4:
                 new ExitCommand().execute();
@@ -29,6 +33,6 @@ public class ChooserCommand implements Serializable {
                 return  null;
          //       break;
         }
-        return  ChooseValueCommand.getClientRequest();
+        return "a";
     }
 }
