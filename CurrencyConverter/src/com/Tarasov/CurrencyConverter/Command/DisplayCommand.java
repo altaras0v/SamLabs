@@ -11,8 +11,13 @@ public class DisplayCommand implements AbstractCommand {
 
     }
     public void execute(Object response,Object clientRequest) {
-        System.out.printf("%s %s %s %s %s",((ClientRequest)clientRequest).getValueOfCurrency(),((ClientRequest)clientRequest).getCurrencyFrom()
-        ,"=",response,((ClientRequest)clientRequest).getCurrencyTo().toString());
+       /* System.out.printf("%s %s %s %s %s",((ClientRequest)clientRequest).getValueOfCurrency(),((ClientRequest)clientRequest).getCurrencyFrom()
+        ,"=",response,((ClientRequest)clientRequest).getCurrencyTo().toString());*/
+        ArrayList arrayList = (ArrayList) response;
+        System.out.println("Курс валют:");
+        for(int i = 0;i<arrayList.size();i=i+3){
+            System.out.println(((ClientRequest)clientRequest).getValueOfCurrency()+" "+arrayList.get(i)+ " = " + arrayList.get(i+2)+ " " + arrayList.get(i+1)+"");
+        }
 
     }
     public void execute(Object response) {

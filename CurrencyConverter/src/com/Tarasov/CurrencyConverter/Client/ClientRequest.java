@@ -8,9 +8,8 @@ public class ClientRequest implements Serializable {
     private String currencyTo;
     private String valueOfCurrency;
 
-    public ClientRequest(String currencyFrom, String currencyTo, BigDecimal valueOfCurrency){
+    public ClientRequest(String currencyFrom, BigDecimal valueOfCurrency){
         this.currencyFrom = currencyFrom;
-        this.currencyTo = currencyTo;
         this.valueOfCurrency = valueOfCurrency.toString();
     }
     public ClientRequest(String currencyFrom){

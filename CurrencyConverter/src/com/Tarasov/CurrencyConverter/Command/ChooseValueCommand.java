@@ -14,7 +14,7 @@ public class ChooseValueCommand implements AbstractCommand {
 
     public void execute(Object response) {
 
-        System.out.println("Выберите исходную валюту: ");
+        System.out.println("Выберите валюту: ");
         Map<Integer,String> map = (Map<Integer, String>) response;
         for(Map.Entry<Integer,String> item : map.entrySet()){
             System.out.printf("%s.%s \n", item.getKey(), item.getValue());
@@ -22,16 +22,16 @@ public class ChooseValueCommand implements AbstractCommand {
         Scanner scanner = new Scanner(System.in);
         int currencyFrom = scanner.nextInt();
         //
-        System.out.println("Выберите итоговую валюту: ");
+       /* System.out.println("Выберите итоговую валюту: ");
         for(Map.Entry<Integer,String> item : map.entrySet()){
             System.out.printf("%s.%s \n", item.getKey(), item.getValue());
         }
-        int currencyTo = scanner.nextInt();
+        int currencyTo = scanner.nextInt();*/
 
         System.out.println("Введите сумму: ");
         BigDecimal value = scanner.nextBigDecimal();
 
-        clientRequest = new ClientRequest(map.get(currencyFrom),map.get(currencyTo),value);
+        clientRequest = new ClientRequest(map.get(currencyFrom),value);
     }
 
     @Override

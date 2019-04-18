@@ -1,38 +1,40 @@
 package com.Tarasov.CurrencyConverter.Server;
 
 import com.Tarasov.CurrencyConverter.Client.ClientRequest;
+import com.Tarasov.CurrencyConverter.DataBase.ArrayDataBase;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import static com.Tarasov.CurrencyConverter.DataBase.ArrayDataBase.getDataBase;
 
 public class Converter {
-    private  String result;
+    private  List resultList;
     private ClientRequest clientRequest;
 
     public Converter(ClientRequest clientRequest) {
         this.clientRequest = clientRequest;
-        this.result = null;
+        this.resultList = new ArrayList();
     }
 
     public void convert() {
-        for (int i = 0; i < getDataBase().length; i++) {
-            if (getDataBase()[i][0].equals(clientRequest.getCurrencyFrom()) && getDataBase()[i][1].equals(clientRequest.getCurrencyTo())) {
-                setResult(convertElement(getDataBase()[i][2], clientRequest.getValueOfCurrency()));
-                break;
-            } else continue;
 
-
+        String[][] array = ArrayDataBase.getDataBase();
+        for(int i = 0; i < array.length;i++){
+            for(int j = 0; j < array[i].length;j++)
+                if (array[i][0].equals((clientRequest.getCurrencyFrom()))){
+                    array[i][2] = convertElement(array[i][2],(clientRequest).getValueOfCurrency());
+                    resultList.addAll(Arrays.asList(array[i][j]));
+                }
         }
+        System.out.println(resultList);
     }
 
 
-    public void setResult(String result) {
-        this.result = result;
-    }
 
-    public String getResult() {
-        return result;
+    public List getResult() {
+        return resultList;
     }
 
     private static String convertElement(String currency, String value) {
