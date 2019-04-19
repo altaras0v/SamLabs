@@ -4,17 +4,13 @@ import com.Tarasov.CurrencyConverter.Command.ChooserCommand;
 import com.Tarasov.CurrencyConverter.Phone.Phone;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) {
-        //Object request;
-        //Object response;
-      //  String stringRequest;
-        try(Phone phone = new Phone("127.0.0.1",6868)) {
 
-            while (true) {
+        try(Phone phone = new Phone("127.0.0.1",6868)) {
+            boolean w = true;
+            while (w==true) {
                 Interviewer.getInterview();
                 int choice = Interviewer.getResult();
 
@@ -38,7 +34,7 @@ public class Client {
 
                         break;
                     case 2:
-                        String stringRequest2 = "Give me DataBade";
+                        String stringRequest2 = "Give me DataBase";
                         phone.writeLine(stringRequest2);
                         Object response2 = phone.readObject();
                         System.out.println(response2);
@@ -52,6 +48,14 @@ public class Client {
                         //phone.writeLine(request);// то, что отправится
                         //String response = phone.readLine();
                         //System.out.println(response);
+                        break;
+                    case 4:
+                        String stringRequest3 = "q";
+                        phone.writeLine(stringRequest3);
+                       // ChooserCommand command4= new ChooserCommand();
+                        //command4.chooseCommand(4,null);
+                        phone.close();
+                        w=false;
                         break;
                     default:
                         break;
