@@ -1,6 +1,6 @@
-package com.Tarasov.CurrencyConverter.Command;
+package com.Tarasov.CurrencyConverter.ClientCommand;
 
-import com.Tarasov.CurrencyConverter.Client.ClientRequest;
+import com.Tarasov.CurrencyConverter.Client.UserRequest;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -11,10 +11,10 @@ import java.util.Scanner;
  */
 public class ConvertCurrencyCommand implements AbstractCommand {
 
-    private static ClientRequest clientRequest;
+    private static UserRequest UserRequest;
 
     /**
-     * Asks currency and value of currency from user and create object of class ClientRequest
+     * Asks currency and value of currency from user and create object of class UserRequest
      * @param namesOfCurrency - list(map like data structure) of names of currency
      */
     public void execute(Object namesOfCurrency) {
@@ -29,14 +29,14 @@ public class ConvertCurrencyCommand implements AbstractCommand {
         System.out.println("Введите сумму: ");
         BigDecimal value = scanner.nextBigDecimal();
 
-        clientRequest = new ClientRequest(map.get(currencyFrom), value);
+        UserRequest = new UserRequest(map.get(currencyFrom), value);
     }
 
     @Override
     public void execute() {
     }
 
-    public static ClientRequest getClientRequest() {
-        return clientRequest;
+    public static UserRequest getUserRequest() {
+        return UserRequest;
     }
 }

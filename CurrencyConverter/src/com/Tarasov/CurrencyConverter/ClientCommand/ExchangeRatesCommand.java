@@ -1,6 +1,6 @@
-package com.Tarasov.CurrencyConverter.Command;
+package com.Tarasov.CurrencyConverter.ClientCommand;
 
-import com.Tarasov.CurrencyConverter.Client.ClientRequest;
+import com.Tarasov.CurrencyConverter.Client.UserRequest;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -9,10 +9,10 @@ import java.util.Scanner;
  * Class which creates request with currency that users entered
  */
 public class ExchangeRatesCommand implements AbstractCommand {
-    private static ClientRequest clientRequest;
+    private static UserRequest UserRequest;
 
     /**
-     * Asks currency from user and create object of class ClientRequest
+     * Asks currency from user and create object of class UserRequest
      * @param namesOfCurrency - list(map like data structure) of names of currency
      */
     public void execute(Object namesOfCurrency) {
@@ -24,12 +24,12 @@ public class ExchangeRatesCommand implements AbstractCommand {
         Scanner scanner = new Scanner(System.in);                           //User chooses currency
         int currencyFrom = scanner.nextInt();
 
-        clientRequest = new ClientRequest(map.get(currencyFrom));
+        UserRequest = new UserRequest(map.get(currencyFrom));
 
     }
 
-    public static ClientRequest getClientRequest() {
-        return clientRequest;
+    public static UserRequest getUserRequest() {
+        return UserRequest;
     }
 
     @Override

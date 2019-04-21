@@ -1,6 +1,4 @@
-package com.Tarasov.CurrencyConverter.Command;
-
-import com.Tarasov.CurrencyConverter.Client.Interviewer;
+package com.Tarasov.CurrencyConverter.ClientCommand;
 
 import java.io.Serializable;
 
@@ -14,12 +12,12 @@ public class ChooserCommand implements Serializable {
 
         switch (command){
             case 1:
-                new ChooseValueCommand().execute(response[0]);
-                return ChooseValueCommand.getClientRequest();
+                new ConvertCurrencyCommand().execute(response[0]);
+                return ConvertCurrencyCommand.getUserRequest();
                // break;
             case 2:
-                new CheckCurrencyCommand().execute(response[0]);
-                return CheckCurrencyCommand.getClientRequest();
+                new ExchangeRatesCommand().execute(response[0]);
+                return ExchangeRatesCommand.getUserRequest();
                 //break;
             case 3:
                 if(response[1]==null) new DisplayCommand().execute(response[0]);
@@ -33,6 +31,6 @@ public class ChooserCommand implements Serializable {
                 return  null;
          //       break;
         }
-        return "a";
+        return null;
     }
 }

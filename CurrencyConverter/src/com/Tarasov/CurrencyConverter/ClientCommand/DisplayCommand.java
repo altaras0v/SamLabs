@@ -1,6 +1,6 @@
-package com.Tarasov.CurrencyConverter.Command;
+package com.Tarasov.CurrencyConverter.ClientCommand;
 
-import com.Tarasov.CurrencyConverter.Client.ClientRequest;
+import com.Tarasov.CurrencyConverter.Client.UserRequest;
 
 import java.util.ArrayList;
 
@@ -11,13 +11,13 @@ public class DisplayCommand implements AbstractCommand {
     /**
      * Displays currency and converted result on the screen
      * @param listOfCurrency - list of name of currency and convert value of currency
-     * @param clientRequest - request data that user entered
+     * @param userRequest - request data that user entered
      */
-    public void execute(Object listOfCurrency, Object clientRequest) {
+    public void execute(Object listOfCurrency, Object userRequest) {
         ArrayList arrayList = (ArrayList) listOfCurrency;
         System.out.println("Курс валют:");
         for (int i = 0; i < arrayList.size(); i = i + 3) {
-            System.out.println(((ClientRequest) clientRequest).getValueOfCurrency() + " " + arrayList.get(i) + " = "
+            System.out.println(((UserRequest) userRequest).getValueOfCurrency() + " " + arrayList.get(i) + " = "
                     + arrayList.get(i + 2) + " " + arrayList.get(i + 1));
         }
     }

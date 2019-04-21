@@ -1,4 +1,4 @@
-package com.Tarasov.CurrencyConverter.Command;
+package com.Tarasov.CurrencyConverter.ClientCommand;
 
 /**
  * Closes the client
