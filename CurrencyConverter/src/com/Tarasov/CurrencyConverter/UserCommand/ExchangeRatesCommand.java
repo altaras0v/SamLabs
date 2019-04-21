@@ -1,4 +1,4 @@
-package com.Tarasov.CurrencyConverter.ClientCommand;
+package com.Tarasov.CurrencyConverter.UserCommand;
 
 import com.Tarasov.CurrencyConverter.Client.UserRequest;
 
@@ -13,6 +13,7 @@ public class ExchangeRatesCommand implements AbstractCommand {
 
     /**
      * Asks currency from user and create object of class UserRequest
+     *
      * @param namesOfCurrency - list(map like data structure) of names of currency
      */
     public void execute(Object namesOfCurrency) {

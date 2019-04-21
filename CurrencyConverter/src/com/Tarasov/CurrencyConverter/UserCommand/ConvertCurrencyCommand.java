@@ -1,4 +1,4 @@
-package com.Tarasov.CurrencyConverter.ClientCommand;
+package com.Tarasov.CurrencyConverter.UserCommand;
 
 import com.Tarasov.CurrencyConverter.Client.UserRequest;
 
