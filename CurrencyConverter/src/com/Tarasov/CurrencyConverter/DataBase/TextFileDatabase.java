@@ -6,32 +6,40 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * Class that emulated database
+ * Filling it
+ * And update exchange rate in separate thread
+ * Database - text file
+ */
 public class TextFileDatabase implements IDataBase {
     static String[][] dataBase;
     static String strLine;
+
+    /**
+     * Initialization local database
+     * Update exchange rate(database[i][2]) in database
+     * And return update values to text database
+     */
     @Override
     public void initialize() {
         try {
-
 
             File statText = new File("C:\\test\\test.txt");
 
             FileInputStream fstream = new FileInputStream(statText.getAbsolutePath());
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
-            // для подчёта строк
+            //for count strings in text database
             FileReader fileReader = new FileReader(statText);
             LineNumberReader lineNumberReader = new LineNumberReader(fileReader);
             int lineNumber = 0;
             while (lineNumberReader.readLine() != null){
                 lineNumber++;
             }
-            System.out.println(lineNumber);
             lineNumberReader.close();
-            // подсчёт строк закочен
 
             dataBase = new String[lineNumber][3];
-
 
             readFromFile(br);
 
@@ -52,6 +60,7 @@ public class TextFileDatabase implements IDataBase {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        //Update text database
                         FileWriter filewriter = new FileWriter(new File(statText.getAbsolutePath()));
 
                         for (int i = 0; i < dataBase.length; i++) {
@@ -78,7 +87,11 @@ public class TextFileDatabase implements IDataBase {
     public static String[][] getDataBase() {
         return dataBase;
     }
-
+    /**
+     * Get currency like Set
+     * For creation currencyMap
+     * @return - currency like Set
+     */
     private static Set<String> getCurrencySet() {
         Set<String> currencySet = new HashSet<>();
         for (int i= 0; i<getDataBase().length;i++){
@@ -86,7 +99,11 @@ public class TextFileDatabase implements IDataBase {
         }
         return Collections.synchronizedSet(currencySet);
     }
-
+    /**
+     * Get currency like Map
+     * For display currency to user
+     * @return - currency like Map
+     */
     public static Map<Integer,String> getCurrencyMap(){
         Map<Integer,String> currencyMap = new HashMap<>();
         int temp = 1;
@@ -96,6 +113,11 @@ public class TextFileDatabase implements IDataBase {
         }
         return  Collections.synchronizedMap(currencyMap);
     }
+    /**
+     * Get database like List for exchanging rate
+     * @param currency - user data
+     * @return exchange rate like List
+     */
     public static List<Integer> toList (Object currency) {
         List list = new ArrayList();
         String[][] array = getDataBase();
@@ -107,10 +129,16 @@ public class TextFileDatabase implements IDataBase {
         }
         return list;
     }
+
+    /**
+     * Read information from file(database)
+     * And fill local database with these values
+     * @param br - BufferedReader that matches the file
+     */
     private void readFromFile(BufferedReader br) throws IOException {
         int j = 0;
         while ((strLine = br.readLine()) != null){
-            String[] words = strLine.split("\\s"); // Разбиение строки на слова с помощью разграничителя (пробел)
+            String[] words = strLine.split("\\s");              // Разбиение строки на слова с помощью разграничителя (пробел)
             // Вывод на экран
             for(int i = 0;i<words.length;i++) {
                 dataBase[j][i] =words[i];

@@ -9,6 +9,12 @@ import com.Tarasov.CurrencyConverter.RequestResponseCommand.ServerCommand.GiveEx
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * Server
+ * Server part of program
+ * Accepts requests from the client and processes them
+ * And send request to client
+ */
 public class Server {
     public static void main(String[] args) throws IOException {
 
@@ -17,66 +23,41 @@ public class Server {
             TextFileDatabase dataBase = new TextFileDatabase();
             dataBase.initialize();
             System.out.println("Server started");
-           while (true) {
+            while (true) {
                 Phone phone = new Phone(serverSocket);
 
+                new Thread(() -> {
+                    boolean q = true;
+                    while (q) {
 
-                    new Thread(() -> {
-                     //   phone.openStream();
-                        boolean q=true;
-                        while (q) {
+                        String stringResponse = phone.readLine();                   //Request from client
+                        switch (stringResponse) {
 
-                            String stringResponse = phone.readLine();
-                            switch (stringResponse) {
-
-                                case "Give ConvertValue":
-                                    new GiveConvertValue().executeResponse(phone);
-
-                                    break;
-                                case "Give ExchangeRates":
-                                   new GiveExchangeRates().executeResponse(phone);
-
-                                    break;
-                                case "Exit":
-                                    q=false;
-                                    break;
-                                default:
-                                    break;
-/*
-                                //ДЛЯ ВТОРОГО КЕЙСА
-                                String stringResponse2 = phone.readLine();
-                                System.out.println(stringResponse2);
-
-
-                                                //ДЛЯ ПЕРВОГО КЕЙСА
-                                     /*  String stringResponse = phone.readLine();
-                                        System.out.println(stringResponse);
-                                        Object request = ArrayDataBase.getCurrencyMap();
-                                        phone.writeObject(request);
-                                        String stringRespose1 = phone.readLine();
-                                        System.out.println(stringRespose1);
-                                        Object response = phone.readObject();
-                                        Converter converter = new Converter((UserRequest)response);
-                                        converter.convert();
-
-                                        request = converter.getResult();
-                                        phone.writeObject(request);*/
-                            }
+                            case "Give ConvertValue":
+                                new GiveConvertValue().executeResponse(phone);      // Convert currency
+                                break;
+                            case "Give ExchangeRates":
+                                new GiveExchangeRates().executeResponse(phone);     //Exchange rates
+                                break;
+                            case "Exit":
+                                q = false;
+                                break;
+                            default:
+                                break;
                         }
-                         try {
-                                phone.close();
-                            } catch (IOException e1) {
-                                e1.printStackTrace();
-                            }
+                    }
+                    try {
+                        phone.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
 
-                    }).start();
-                }
-
-            }  catch(NullPointerException e){
-                e.printStackTrace();
+                }).start();
             }
-            System.out.println("1");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+    }
 
 }
 

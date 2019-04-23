@@ -4,20 +4,28 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Class that create socket
+ * And all streams for socket
+ */
 public class Phone implements Closeable {
 
     private final Socket socket;
-    private final BufferedReader bufferedReader;
-    private final BufferedWriter bufferedWriter;
-    private final ObjectInputStream objectReader;
-    private final ObjectOutputStream objectWriter;
+    private BufferedReader bufferedReader;
+    private BufferedWriter bufferedWriter;
+    private ObjectInputStream objectReader;
+    private ObjectOutputStream objectWriter;
 
-
+    /**
+     * Create socket fo client
+     * @param ip - ip address
+     * @param port - socket port
+     */
     public Phone(String ip, int port) {
         try {
             this.socket = new Socket("127.0.0.1", port);
         } catch (IOException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
         this.bufferedReader = createReader();
         this.bufferedWriter = createWriter();
@@ -26,16 +34,17 @@ public class Phone implements Closeable {
 
     }
 
+    /**
+     * Create socket for server
+     * @param serverSocket - Object of SeverSocket
+     */
     public Phone(ServerSocket serverSocket) {
         try {
             this.socket = serverSocket.accept();
-            System.out.println( "client connected.....");
-
-        this.bufferedReader = createReader();
-        this.bufferedWriter = createWriter();
-            System.out.println("constrr");
+            this.bufferedReader = createReader();
+            this.bufferedWriter = createWriter();
             this.objectWriter = createObjectWriter();
-        this.objectReader = createObjectReader(); //new ObjectInputStream(socket.getInputStream());//createObjectReader();
+            this.objectReader = createObjectReader();
 
 
         } catch (Exception e) {
@@ -44,6 +53,10 @@ public class Phone implements Closeable {
         }
     }
 
+    /**
+     * Write string line
+     * @param message - command
+     */
     public void writeLine(String message) {
         try {
             bufferedWriter.write(message);
@@ -54,15 +67,23 @@ public class Phone implements Closeable {
         }
     }
 
-
+    /**
+     * Read string line
+     * @return command that was sent
+     */
     public String readLine() {
         try {
             return bufferedReader.readLine();
         } catch (IOException e) {
-           throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
-   public void writeObject(Object object){
+
+    /**
+     * Write object
+     * @param object - any object
+     */
+    public void writeObject(Object object) {
         try {
             objectWriter.writeObject(object);
             objectWriter.flush();
@@ -71,45 +92,68 @@ public class Phone implements Closeable {
         }
 
     }
-    public Object readObject(){
+
+    /**
+     * Read object that returned
+     * @return any object
+     */
+    public Object readObject() {
         try {
-            return  objectReader.readObject();
+            return objectReader.readObject();
         } catch (Exception e) {
-           throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
-    private ObjectInputStream createObjectReader(){
-        try{
+    /**
+     * Create ObjectInputStream
+     * @return ObjectInputStream
+     */
+    private ObjectInputStream createObjectReader() {
+        try {
             return new ObjectInputStream(socket.getInputStream());
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-    private ObjectOutputStream createObjectWriter(){
-        try{
+    /**
+     * Create ObjectOutputStream
+     * @return ObjectOutputStream
+     */
+    private ObjectOutputStream createObjectWriter() {
+        try {
             return new ObjectOutputStream(socket.getOutputStream());
-        }catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private BufferedReader createReader(){
+    /**
+     * Create BufferReader from InputStreamReader
+     * @return BufferedReader
+     */
+    private BufferedReader createReader() {
         try {
             return new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    private BufferedWriter createWriter(){
+    /**
+     * Create BufferedWriter from OutputStreamWriter
+     * @return BufferedWriter
+     */
+    private BufferedWriter createWriter() {
         try {
             return new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (IOException e) {
-            throw  new RuntimeException(e);
+            throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Close streams and socket
+     */
     @Override
     public void close() throws IOException {
         bufferedReader.close();

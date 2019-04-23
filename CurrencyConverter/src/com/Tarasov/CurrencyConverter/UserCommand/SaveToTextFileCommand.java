@@ -24,8 +24,9 @@ public class SaveToTextFileCommand implements AbstractCommand {
             FileOutputStream fileOutputStream = new FileOutputStream(createFile());
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             Writer writer = new BufferedWriter(outputStreamWriter);
-            writer.write((String.format("Текущая дата и время: %tc", date)) + "\r\n\r\n" + "Результат конвертации" + "\r\n\r\n");
             ArrayList arrayList = (ArrayList) convertValues;
+            writer.write((String.format("Текущая дата и время: %tc", date)) + "\r\n\r\n" + "Результат конвертации " +
+                 arrayList.get(0) + " -> " + arrayList.get(1) +" \r\n\r\n");
             for (int i = 0; i < arrayList.size(); i = i + 3) {
                 writer.write(((UserRequest) userRequest).getValueOfCurrency() + " " + arrayList.get(i) + " = "
                         + arrayList.get(i + 2) + " " + arrayList.get(i + 1) + "\r\n");

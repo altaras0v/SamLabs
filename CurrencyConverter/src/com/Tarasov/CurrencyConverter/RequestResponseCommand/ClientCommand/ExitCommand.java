@@ -2,18 +2,18 @@ package com.Tarasov.CurrencyConverter.RequestResponseCommand.ClientCommand;
 
 import com.Tarasov.CurrencyConverter.Phone.Phone;
 
-import java.io.IOException;
-
+/**
+ * Command fo exit
+ */
 public class ExitCommand implements AbstractCommand {
-
+    /**
+     * Response for exit
+     * @param phone - object of phone for client
+     */
     public void executeResponse(Phone phone) {
-        String stringRequest3 = "q";
+        String stringRequest3 = "Exit";
         phone.writeLine(stringRequest3);
-        // ChooserCommand command4= new ChooserCommand();
-        //command4.chooseCommand(4,null);
-
     }
-
 
     @Override
     public void executeRequest(Phone phone) {

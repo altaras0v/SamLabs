@@ -26,7 +26,7 @@ public class Converter {
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++)
-                if (array[i][0].equals((UserRequest.getCurrencyFrom()))) {
+                if ((array[i][0].equals(((UserRequest.getCurrencyFrom()))))&&(array[i][1].equals(((UserRequest.getCurrencyTo()))))) {
                     result[0][0] = array[i][0];
                     result[0][1] = array[i][1];
                     result[0][2] = convertElement(array[i][2], (UserRequest).getValueOfCurrency());

@@ -6,8 +6,17 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * Class that emulated database
+ * Filling it
+ * And update exchange rate in separate thread
+ */
 public class ArrayDataBase implements IDataBase,Runnable,Serializable {
     static String dataBase[][];
+
+    /**
+     * Initialization of database
+     */
     @Override
     public synchronized void initialize() {
 
@@ -47,7 +56,7 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         dataBase[29][0] = "JPY";dataBase[29][1] = "CNY";dataBase[29][2] = "0.0599";
 
         dataBase[30][0] = "RUB";dataBase[30][1] = "EUR";dataBase[30][2] = "0.0139";
-        dataBase[31][0] = "EUR";dataBase[31][1] = "CNY";dataBase[31][2] = "71.750";
+        dataBase[31][0] = "EUR";dataBase[31][1] = "RUB";dataBase[31][2] = "71.750";
         dataBase[32][0] = "RUB";dataBase[32][1] = "USD";dataBase[32][2] = "0.0156";
         dataBase[33][0] = "USD";dataBase[33][1] = "RUB";dataBase[33][2] = "63.794";
         dataBase[34][0] = "RUB";dataBase[34][1] = "GBP";dataBase[34][2] = "0.0120";
@@ -76,19 +85,18 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         dataBase[55][0] = "PLN";dataBase[55][1] = "EUR";dataBase[55][2] = "0.233";
 
 
-
+        // Update exchange rate(database[i][2]) in database
         new Thread(() -> {
             try {
 
                 while (true) {
-                    BigDecimal decimal = new BigDecimal("0.001");
+                    BigDecimal decimal = new BigDecimal("0.001"); // value that will be increase
                     synchronized (dataBase) {
                         for (int i = 0; i < dataBase.length; i++) {
                             BigDecimal bigDecimal = new BigDecimal(dataBase[i][2]);
                             bigDecimal = bigDecimal.add(decimal);
                             dataBase[i][2] = bigDecimal.toString();
                         }
-                       // System.out.println(Arrays.deepToString(dataBase));
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
@@ -106,6 +114,11 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
         return dataBase;
     }
 
+    /**
+     * Get currency like Set
+     * For creation currencyMap
+     * @return - currency like Set
+     */
     private static Set<String> getCurrencySet() {
          Set<String> currencySet = new HashSet<>();
           for (int i= 0; i<getDataBase().length;i++){
@@ -113,16 +126,26 @@ public class ArrayDataBase implements IDataBase,Runnable,Serializable {
           }
           return Collections.synchronizedSet(currencySet);
     }
-
+    /**
+     * Get currency like Map
+     * For display currency to user
+     * @return - currency like Map
+     */
     public static Map<Integer,String> getCurrencyMap(){
         Map<Integer,String> currencyMap = new HashMap<>();
-        int temp = 1;
+        int temp = 1;                                           // number of first currency
         for (Object s : getCurrencySet()){
             currencyMap.put(temp,s.toString());
             temp++;
         }
         return  Collections.synchronizedMap(currencyMap);
     }
+
+    /**
+     * Get database like List for exchanging rate
+     * @param currency - user data
+     * @return exchange rate like List
+     */
     public static List<Integer> toList (Object currency) {
         List list = new ArrayList();
         String[][] array = getDataBase();
